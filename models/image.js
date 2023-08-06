@@ -1,6 +1,7 @@
 import {DataTypes} from "sequelize";
+import {sequelize} from "./index.js";
 
-export const Image = function (sequelize){
+export const image = () => {
     return sequelize.define(
         "image",
         {

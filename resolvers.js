@@ -2,7 +2,7 @@ import {imagesData} from "./images.js";
 
 export const resolvers = {
     Query: {
-        image: (args, context, info) =>{
+        getImageById: (args, context, info) =>{
             let foundImage = {};
             imagesData.forEach((image) => {
                 if(image.id === args.id){
@@ -11,7 +11,7 @@ export const resolvers = {
             })
             return foundImage;
         },
-        images: (args, context, info) =>{
+        getImagesByCategory: (args, context, info) =>{
             if(args.category) {
                 return imagesData.filter((image) => image.category.toLocaleLowerCase() === args.category.toLocaleLowerCase());
             }
