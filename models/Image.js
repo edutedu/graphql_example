@@ -1,8 +1,8 @@
 import {DataTypes} from "sequelize";
 import {sequelize} from "./index.js";
 
-export const image = () => {
-    return sequelize.define(
+export const Image =
+    sequelize.define(
         "image",
         {
             id: {
@@ -42,6 +42,4 @@ export const image = () => {
         {
             timestamps: true,
             paranoid: true,
-        }
-    );
-};
+        });

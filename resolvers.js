@@ -1,39 +1,34 @@
-import {imagesData} from "./images.js";
-
+import {Image} from "./models/Image.js"
 export const resolvers = {
     Query: {
-        getImageById: (args, context, info) =>{
-            let foundImage = {};
-            imagesData.forEach((image) => {
-                if(image.id === args.id){
-                    foundImage = image;
-                }
-            })
-            return foundImage;
-        },
-        getImagesByCategory: (args, context, info) =>{
-            if(args.category) {
-                return imagesData.filter((image) => image.category.toLocaleLowerCase() === args.category.toLocaleLowerCase());
+        getImageById: async(args, context, info) =>{
+            const image = await Image.findByPk(args.id);
+            if(!image){
+                throw new Error(`Couldn't find author with id ${args.id}`);
             }
-            return imagesData;
+            return await Image.findByPk(args.id);
+        },
+        getImagesByCategory: async(args, context, info) =>{
+            return await Image.findAll({
+                where: {
+                    category: args.category
+                }
+            });
         }
     },
     Mutation: {
-        createImage: (args, context, info) => {
-            let newImage = {
-                id: imagesData.findLast((image) => image.id).id + 1,
+        createImage: async(args, context, info) => {
+            return await Image.create({
                 title: args.input.title,
                 owner: args.input.owner,
                 category: args.input.category,
                 url: args.input.url
-            }
-            imagesData.push(newImage);
-            return imagesData.findLast((image) => image.id);
+            })
         },
-        updateImage: (args, context, info) => {
-            const imageToUpdate = imagesData.find((image) => image.id === args.input.id);
+        updateImage: async(args, context, info) => {
+            const imageToUpdate = await Image.findByPk(args.input.id);
             if(!imageToUpdate){
-                throw new Error(`Couldn't find author with id ${args.id}`);
+                throw new Error(`Couldn't find image with id ${args.id}`);
             }
             if(args.input.category !== undefined){
                 imageToUpdate.category = args.input.category;
@@ -47,14 +42,14 @@ export const resolvers = {
             if(args.input.title !== undefined){
                 imageToUpdate.title = args.input.title;
             }
-            return imageToUpdate;
+            return await imageToUpdate.save();
         },
-        deleteImage: (args, context, info) => {
-            const imageToBeDeleted = imagesData.find((image) => image.id === args.id);
+        deleteImage: async(args, context, info) => {
+            const imageToBeDeleted = await Image.findByPk(args.id)
             if(imageToBeDeleted === undefined){
                 return `The image with the id: ${args.id} doesn't exist`;
             }
-            imagesData = imagesData.filter((image) => image.id !== args.id)
+            await imageToBeDeleted.destroy();
             return `The image with the id: ${args.id} has been deleted`;
         }
     }
