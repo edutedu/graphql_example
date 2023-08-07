@@ -1,5 +1,5 @@
 import {DataTypes} from "sequelize";
-import {sequelize} from "../models/index.js";
+import {sequelize} from "../../models/index.js";
 
 export const up = async () => {
     await sequelize.getQueryInterface().createTable("images",{

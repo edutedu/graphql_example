@@ -1,10 +1,9 @@
 import express from "express"
 import {graphqlHTTP} from "express-graphql";
-import {graphql} from "graphql/graphql.js";
 import {schema} from "./schema.js";
 import {resolvers} from "./resolvers.js";
 import {sequelize} from "./models/index.js";
-import runMigrations from "./db/migration-run.js";
+import runMigrations from "./migrate-db/migration-run.js";
 
 
 const root = {
@@ -17,7 +16,7 @@ const root = {
 
 const app = express();
 
-async function startApp(){
+const startApp = async () => {
     try{
         await sequelize.sync();
         await runMigrations();
@@ -33,8 +32,9 @@ async function startApp(){
         app.listen(5000, () => {
             console.log("GraphQL server is running on port 5000");
         });
-    }catch (err){
-        console.error("Error starting the app: ", err);
+    }catch (error){
+        console.error("Error starting the app: ", error);
+        throw error;
     }
 }
 
