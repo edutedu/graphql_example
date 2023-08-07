@@ -26,7 +26,7 @@ export const resolvers = {
             })
         },
         updateImage: async(args, context, info) => {
-            const imageToUpdate = await Image.findByPk(args.input.id);
+            const imageToUpdate = await Image.findByPk(args.id);
             if(!imageToUpdate){
                 throw new Error(`Couldn't find image with id ${args.id}`);
             }

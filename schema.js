@@ -13,17 +13,9 @@ export const schema = buildSchema(`
             url: String
         }
         
-        input UpdateInput{
-            id: Int!
-            title: String
-            category: String
-            owner: String
-            url: String
-        }
-        
         type Mutation {
             createImage(input: ImageInput): Image
-            updateImage(input: UpdateInput): Image
+            updateImage(id: Int!, input: ImageInput): Image
             deleteImage(id: Int!): String
         }
         

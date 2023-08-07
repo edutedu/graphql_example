@@ -16,7 +16,7 @@ async function runMigrations(){
            const { up } = await import(join(dirname, migrationFile))
            if(typeof up === 'function'){
                console.log(`Running migration: ${migrationFile}`);
-               await up(sequelize.getQueryInterface(), sequelize);
+               await up();
            }
         }
     }catch (error){
