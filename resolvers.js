@@ -6,7 +6,7 @@ export const resolvers = {
             if(!image){
                 throw new Error(`Couldn't find author with id ${args.id}`);
             }
-            return await Image.findByPk(args.id);
+            return image;
         },
         getImagesByCategory: async(args, context, info) =>{
             return await Image.findAll({
