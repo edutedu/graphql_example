@@ -18,29 +18,31 @@ export const resolvers = {
   },
   Mutation: {
     createImage: async (args, context, info) => {
+      const { title, owner, category, url } = args.input;
       return await Image.create({
-        title: args.input.title,
-        owner: args.input.owner,
-        category: args.input.category,
-        url: args.input.url
+        title,
+        owner,
+        category,
+        url
       });
     },
     updateImage: async (args, context, info) => {
       const imageToUpdate = await Image.findByPk(args.id);
+      const { category, owner, url, title } = args.input;
       if (!imageToUpdate) {
         throw new Error(`Couldn't find image with id ${args.id}`);
       }
-      if (args.input.category !== undefined) {
-        imageToUpdate.category = args.input.category;
+      if (category !== undefined) {
+        imageToUpdate.category = category;
       }
-      if (args.input.owner !== undefined) {
-        imageToUpdate.owner = args.input.owner;
+      if (owner !== undefined) {
+        imageToUpdate.owner = owner;
       }
-      if (args.input.url !== undefined) {
-        imageToUpdate.url = args.input.url;
+      if (url !== undefined) {
+        imageToUpdate.url = url;
       }
-      if (args.input.title !== undefined) {
-        imageToUpdate.title = args.input.title;
+      if (title !== undefined) {
+        imageToUpdate.title = title;
       }
       return await imageToUpdate.save();
     },

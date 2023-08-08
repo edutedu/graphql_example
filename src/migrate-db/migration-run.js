@@ -5,8 +5,6 @@ import url from "url";
 const directoryURL = dirname(import.meta.url).concat("/migrations");
 const directoryPath = url.fileURLToPath(directoryURL);
 
-console.log(directoryPath);
-
 const getMigrationsFiles = async () => {
   return readdirSync(directoryPath).filter((file) => file.endsWith(".js")).sort();
 };

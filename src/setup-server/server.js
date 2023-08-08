@@ -21,7 +21,7 @@ const startApp = async () => {
     );
 
     app.listen(5000, () => {
-      console.log("GraphQL server is running on port 5000");
+      console.log("GraphQL server is running");
     });
   } catch (error) {
     console.error("Error starting the app: ", error);
