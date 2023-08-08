@@ -3,14 +3,14 @@
     "username": "eduard",
     "password": "test1234",
     "database": "test",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "eduard",
     "password": "test1234",
     "database": "test",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }
