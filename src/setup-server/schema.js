@@ -1,4 +1,4 @@
-import {buildSchema} from "graphql/utilities/index.js";
+import { buildSchema } from "graphql/utilities/index.js";
 
 export const schema = buildSchema(`
         type Query {
