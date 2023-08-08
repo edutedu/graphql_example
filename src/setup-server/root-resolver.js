@@ -1,4 +1,4 @@
-import { resolver } from "./resolver.js";
+import { resolver } from "../resolvers/index.js";
 
 export const root = {
   image: resolver.Query.queryResolvers.getImageById,
