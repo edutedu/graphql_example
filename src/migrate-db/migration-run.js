@@ -1,4 +1,3 @@
-
 import {join, dirname} from 'path';
 import {readdirSync} from 'fs';
 import url from "url";

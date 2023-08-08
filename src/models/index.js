@@ -1,7 +1,6 @@
 'use strict';
 import {Sequelize} from "sequelize";
-import {Image} from "./Image.js";
-import config from '../config/config.json' assert { type: 'json' };
+import config from '../../config/config.json' assert { type: 'json' };
 
 const sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, {
   host: config.development.host,
@@ -18,4 +17,4 @@ try {
   throw error;
 }
 
-export {sequelize, Image}
+export {sequelize}

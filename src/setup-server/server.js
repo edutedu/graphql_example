@@ -1,18 +1,9 @@
 import express from "express"
 import {graphqlHTTP} from "express-graphql";
 import {schema} from "./schema.js";
-import {resolvers} from "./resolvers.js";
-import {sequelize} from "./models/index.js";
-import runMigrations from "./migrate-db/migration-run.js";
-
-
-const root = {
-    image: resolvers.Query.getImageById,
-    images: resolvers.Query.getImagesByCategory,
-    createImage: resolvers.Mutation.createImage,
-    updateImage: resolvers.Mutation.updateImage,
-    deleteImage: resolvers.Mutation.deleteImage
-};
+import {sequelize} from "../models/index.js";
+import runMigrations from "../migrate-db/migration-run.js";
+import {root} from "./root-resolver.js";
 
 const app = express();
 

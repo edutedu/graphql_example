@@ -1,4 +1,4 @@
-import {Image} from "./models/Image.js"
+import {Image} from "../models/Image.js"
 export const resolvers = {
     Query: {
         getImageById: async(args, context, info) =>{
