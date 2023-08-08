@@ -1,9 +1,9 @@
-import { resolvers } from "./resolvers.js";
+import { resolver } from "./resolver.js";
 
 export const root = {
-  image: resolvers.Query.getImageById,
-  images: resolvers.Query.getImagesByCategory,
-  createImage: resolvers.Mutation.createImage,
-  updateImage: resolvers.Mutation.updateImage,
-  deleteImage: resolvers.Mutation.deleteImage
+  image: resolver.Query.queryResolvers.getImageById,
+  images: resolver.Query.queryResolvers.getImagesByCategory,
+  createImage: resolver.Mutation.mutationResolvers.createImage,
+  updateImage: resolver.Mutation.mutationResolvers.updateImage,
+  deleteImage: resolver.Mutation.mutationResolvers.deleteImage
 };
