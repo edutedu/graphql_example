@@ -4,6 +4,7 @@ import { schema } from "./schema.js";
 import { sequelize } from "../models/index.js";
 import runMigrations from "../migrate-db/migration-run.js";
 import { root } from "./root-resolver.js";
+import { Config } from "./config.js";
 
 const app = express();
 
@@ -20,8 +21,8 @@ const startApp = async () => {
       })
     );
 
-    app.listen(5000, () => {
-      console.log("GraphQL server is running");
+    app.listen(Config.port, () => {
+      console.log(`GraphQL server is running on port ${Config.port}`);
     });
   } catch (error) {
     console.error("Error starting the app: ", error);

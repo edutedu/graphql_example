@@ -1,20 +1,18 @@
-'use strict';
-import {Sequelize} from "sequelize";
-import config from '../../config/config.json' assert { type: 'json' };
+"use strict";
+import { Sequelize } from "sequelize";
+import { Config } from "../setup-server/config.js";
 
-const sequelize = new Sequelize(config.development.database, config.development.username, config.development.password, {
-  host: config.development.host,
-  dialect: config.development.dialect
+const sequelize = new Sequelize(Config.database, Config.user, Config.password, {
+  host: Config.host,
+  dialect: Config.dialect
 });
-
-
 
 try {
   await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
+  console.log("Connection has been established successfully.");
 } catch (error) {
-  console.error('Unable to connect to the database:', error);
+  console.error("Unable to connect to the database:", error);
   throw error;
 }
 
-export {sequelize}
+export { sequelize };
