@@ -11,4 +11,3 @@ You need to install the following in order to run the app:
 In order to run the app you need to use the following commands:
  - yarn install
  - docker compose up (For starting the containers)
- - yarn start(and then type: start)
