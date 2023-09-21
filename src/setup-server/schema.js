@@ -6,7 +6,20 @@ export const schema = buildSchema(`
             images(category: String): [Image]
         }
         
+        input OwnerInput {
+          name: String!
+        }
+        
         input ImageInput {
+            ownerId: Int!
+            title: String
+            category: String
+            owner: String
+            url: String
+        }
+        
+        input UpdateImage {
+            id: Int!
             title: String
             category: String
             owner: String
@@ -14,8 +27,9 @@ export const schema = buildSchema(`
         }
         
         type Mutation {
+            createOwner(input: OwnerInput): Owner
             createImage(input: ImageInput): Image
-            updateImage(id: Int!, input: ImageInput): Image
+            updateImage(input: UpdateImage): Image
             deleteImage(id: Int!): String
         }
         
@@ -25,5 +39,10 @@ export const schema = buildSchema(`
             category: String
             owner: String
             url: String
+        }
+        
+        type Owner {
+            id: Int!
+            name: String
         }
 `);

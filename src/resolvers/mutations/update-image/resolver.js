@@ -1,8 +1,12 @@
-import { Image } from "../../models/Image.js";
+import { Image } from "../../../models/Image.js";
+import { yupSchema } from "./validate-input.js";
 
 export const updateImage = async (args, context, info) => {
-  const imageToUpdate = await Image.findByPk(args.id);
-  const { category, owner, url, title } = args.input;
+  await yupSchema().validate(args.input);
+  const { id, category, owner, url, title } = args.input;
+  const model = await Image();
+  const imageToUpdate = await model.findByPk(id);
+
   if (!imageToUpdate) {
     throw new Error(`Couldn't find image with id ${args.id}`);
   }

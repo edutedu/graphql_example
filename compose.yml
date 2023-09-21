@@ -2,7 +2,7 @@ services:
     example:
       build:
         dockerfile: Dockerfile
-      container_name: example.dev
+      container_name: graphql_example.dev
       ports:
         - "5000:5000"
       depends_on:

@@ -1,6 +1,6 @@
 FROM node:18.13.0
 
-WORKDIR /example
+WORKDIR /graphql_example
 
 COPY ./package.json /package.json
 

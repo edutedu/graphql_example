@@ -1,16 +1,17 @@
+import { Config } from "./config.js";
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
 import { schema } from "./schema.js";
 import { sequelize } from "../models/index.js";
-import runMigrations from "../migrate-db/migration-run.js";
+import { runMigrations } from "../migrate-db/migration-run.js";
 import { root } from "./root-resolver.js";
-import { Config } from "./config.js";
 
 const app = express();
 
 const startApp = async () => {
   try {
-    await sequelize.sync();
+    const seq = await sequelize();
+    await seq.sync();
     await runMigrations();
     app.use(
       "/graphql",

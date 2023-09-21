@@ -9,7 +9,7 @@ const getMigrationsFiles = async () => {
   return readdirSync(directoryPath).filter((file) => file.endsWith(".js")).sort();
 };
 
-const runMigrations = async () => {
+export const runMigrations = async () => {
   try {
     const migrations = await getMigrationsFiles();
 
@@ -25,5 +25,3 @@ const runMigrations = async () => {
     throw error;
   }
 };
-
-export default runMigrations;

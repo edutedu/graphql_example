@@ -5,5 +5,7 @@ export const root = {
   images: resolver.Query.queryResolvers.getImagesByCategory,
   createImage: resolver.Mutation.mutationResolvers.createImage,
   updateImage: resolver.Mutation.mutationResolvers.updateImage,
-  deleteImage: resolver.Mutation.mutationResolvers.deleteImage
+  deleteImage: resolver.Mutation.mutationResolvers.deleteImage,
+  createOwner: resolver.Mutation.mutationResolvers.createOwner,
+  deleteOwner: resolver.Mutation.mutationResolvers.deleteOwner
 };
